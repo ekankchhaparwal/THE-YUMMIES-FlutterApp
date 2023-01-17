@@ -13,7 +13,7 @@ class EditMeals extends StatelessWidget {
     return Scaffold(
         body: Scaffold(
       appBar: AppBar(
-        title: const Text('Your Products'),
+        title: const Text('Your Meals'),
         actions: <Widget>[
           IconButton(onPressed: () {}, icon: const Icon(Icons.add)),
           const SizedBox(width: 10,),
