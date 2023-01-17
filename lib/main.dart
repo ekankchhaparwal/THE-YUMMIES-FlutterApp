@@ -1,13 +1,19 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:the_yummies/providers/dishItem.dart';
 import 'package:the_yummies/screens/RecippieDetailScreen.dart';
 import './screens/all_recipies.dart';
 import 'package:provider/provider.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import './providers/allDishes.dart';
+import 'package:hive/hive.dart';
+import './screens/editmealscreen.dart';
 
+Future main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
+  // await Hive.initFlutter();
+  // Hive.registerAdapter(DishItemAdapter());
+  // await Hive.openBox<DishItem>('dishes');
   runApp(const MyApp());
 }
 
@@ -46,6 +52,7 @@ class MyApp extends StatelessWidget {
         home: AllRecipies(),
         routes: {
           RecipieDetailScreen.routeName: (ctx) => RecipieDetailScreen(),
+          EditMeals.routeName:(ctx) => EditMeals(),
         },
       ),
     );

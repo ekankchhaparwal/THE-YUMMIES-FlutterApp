@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:the_yummies/screens/editmealscreen.dart';
 
 class FiltersAndEDit extends StatelessWidget {
   const FiltersAndEDit({super.key});
@@ -23,9 +24,9 @@ class FiltersAndEDit extends StatelessWidget {
             child: Row(
               children: [
                 GradientText(
-                  '  The Yummies',
+                  '  Lets Prepare Yummies',
                   style: const TextStyle(
-                    fontSize: 27.0,
+                    fontSize: 20.0,
                   ),
                   colors: const [
                     Color.fromARGB(255, 230, 11, 91),
@@ -43,6 +44,42 @@ class FiltersAndEDit extends StatelessWidget {
           const Divider(
             color: Colors.pinkAccent,
           ),
+          ListTile(
+            leading: const Icon(
+              Icons.food_bank_outlined,
+              color: Colors.purple,
+            ),
+            title: const Text(
+              'All Meals',
+              style: TextStyle(
+                  fontSize: 15,
+                  decoration: TextDecoration.none,
+                  color: Colors.pinkAccent,
+                  fontWeight: FontWeight.bold),
+            ),
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed('/');
+            },
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(
+              Icons.edit_rounded,
+              color: Colors.purple,
+            ),
+            title: const Text(
+              'Edit Meals',
+              style: TextStyle(
+                  fontSize: 15,
+                  decoration: TextDecoration.none,
+                  color: Colors.pinkAccent,
+                  fontWeight: FontWeight.bold),
+            ),
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed(EditMeals.routeName);
+            },
+          ),
+          const Divider(),
         ],
       ),
     );

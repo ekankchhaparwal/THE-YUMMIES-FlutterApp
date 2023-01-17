@@ -122,6 +122,11 @@ class AllDishesRecipie with ChangeNotifier{
   DishItem findById(String id) {
     return _dishesRecipies.firstWhere((element) => element.id == id);
   }
+
+  void deleteDish(String id) {
+    _dishesRecipies.removeWhere((element) => element.id == id);
+    notifyListeners();
+  }
 }
 
   
