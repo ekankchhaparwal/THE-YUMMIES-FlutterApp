@@ -7,6 +7,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import './providers/allDishes.dart';
 import 'package:hive/hive.dart';
 import './screens/editmealscreen.dart';
+import './screens/new_meal_screen.dart';
 
 Future main() async {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -52,7 +53,8 @@ class MyApp extends StatelessWidget {
         home: AllRecipies(),
         routes: {
           RecipieDetailScreen.routeName: (ctx) => RecipieDetailScreen(),
-          EditMeals.routeName:(ctx) => EditMeals(),
+          EditMeals.routeName: (ctx) => EditMeals(),
+          NewMealScreen.routeName : (ctx)=> NewMealScreen(),
         },
       ),
     );

@@ -3,6 +3,7 @@ import '../widgets/drawer.dart';
 import 'package:provider/provider.dart';
 import '../providers/allDishes.dart';
 import '../widgets/eachDish_inList.dart';
+import '../screens/new_meal_screen.dart';
 
 class EditMeals extends StatelessWidget {
   const EditMeals({super.key});
@@ -15,11 +16,18 @@ class EditMeals extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Your Meals'),
         actions: <Widget>[
-          IconButton(onPressed: () {}, icon: const Icon(Icons.add)),
-          const SizedBox(width: 10,),
+          IconButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .pushReplacementNamed(NewMealScreen.routeName);
+              },
+              icon: const Icon(Icons.add)),
+          const SizedBox(
+            width: 10,
+          ),
         ],
       ),
-      drawer: FiltersAndEDit(),
+      drawer: const FiltersAndEDit(),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: ListView.builder(

@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 
-part 'dishItem.g.dart';
-
-enum Difficulty { Simple, Medium, Professional }
 
 @HiveType(typeId: 0)
 class DishItem with ChangeNotifier {
@@ -29,9 +26,6 @@ class DishItem with ChangeNotifier {
   final int preparationCost;
 
   @HiveField(7)
-  final Difficulty difficulty;
-
-  @HiveField(8)
   bool isFavourite;
 
   DishItem({
@@ -39,7 +33,6 @@ class DishItem with ChangeNotifier {
     required this.title,
     required this.imageUrl,
     required this.recipieDescription,
-    required this.difficulty,
     required this.vegetarian,
     required this.preparationTime,
     required this.preparationCost,
