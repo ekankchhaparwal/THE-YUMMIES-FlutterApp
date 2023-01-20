@@ -17,5 +17,8 @@ by selecting the "Favorites" option from the PopUpMenuOption.
 On clicking the Drawer icon ,you can select the editMealsScreen to know all your meals in a screen using ListTile.
 The delete icon,on clicking deletes the Meal Completely.
 
+Adding a new Meal Recipie :
+On clicking the plus button a new screen is opened which has a form to fill the details about the meal like recipie , cost , time , vegetarian or not etc..
+For now, I am using Image.network to show the image.
 
 Also to Note that the HIVE integration is not yet done. On closing the app the meals are again reloaded since the data is hardcoded as of now.
