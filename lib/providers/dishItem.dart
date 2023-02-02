@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
-
+part 'dishItem.g.dart';
 
 @HiveType(typeId: 0)
 class DishItem with ChangeNotifier {

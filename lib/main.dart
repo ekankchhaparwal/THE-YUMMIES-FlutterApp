@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:the_yummies/providers/dishItem.dart';
 import 'package:the_yummies/screens/RecippieDetailScreen.dart';
@@ -8,13 +9,14 @@ import './providers/allDishes.dart';
 import 'package:hive/hive.dart';
 import './screens/editmealscreen.dart';
 import './screens/new_meal_screen.dart';
+import 'package:path_provider/path_provider.dart';
 
-Future main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-
-  // await Hive.initFlutter();
-  // Hive.registerAdapter(DishItemAdapter());
-  // await Hive.openBox<DishItem>('dishes');
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final doucment = await getApplicationDocumentsDirectory();
+  Hive.init(doucment.path);
+  Hive.registerAdapter(DishItemAdapter());
+  await Hive.openBox<DishItem>('dishes');
   runApp(const MyApp());
 }
 
@@ -54,7 +56,7 @@ class MyApp extends StatelessWidget {
         routes: {
           RecipieDetailScreen.routeName: (ctx) => RecipieDetailScreen(),
           EditMeals.routeName: (ctx) => EditMeals(),
-          NewMealScreen.routeName : (ctx)=> NewMealScreen(),
+          NewMealScreen.routeName: (ctx) => NewMealScreen(),
         },
       ),
     );

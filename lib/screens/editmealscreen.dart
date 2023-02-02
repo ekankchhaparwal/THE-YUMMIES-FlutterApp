@@ -27,6 +27,15 @@ class EditMeals extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pushReplacementNamed(NewMealScreen.routeName);
+        },
+        elevation: 6,
+        child: Icon(Icons.add),
+        backgroundColor: Colors.purpleAccent,
+        splashColor: Colors.deepOrange,
+      ),
       drawer: const FiltersAndEDit(),
       body: Padding(
         padding: const EdgeInsets.all(10),

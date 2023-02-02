@@ -33,15 +33,12 @@ class _NewMealScreenState extends State<NewMealScreen> {
 
   void _saveForm() {
     final boole = _formkey.currentState!.validate();
-    print(boole);
+    
     if (!boole) {
       return;
     }
     _formkey.currentState!.save();
 
-    print('hello');
-  
-   
     List<String> description = _recipie.split(RegExp(r'[.!?]'));
     var _newDish = DishItem(
         id: "",
