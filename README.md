@@ -21,4 +21,4 @@ Adding a new Meal Recipie :
 On clicking the plus button a new screen is opened which has a form to fill the details about the meal like recipie , cost , time , vegetarian or not etc..
 For now, I am using Image.network to show the image.
 
-Also to Note that the HIVE integration is not yet done. On closing the app the meals are again reloaded since the data is hardcoded as of now.
+The Hive Integration with the App is done and all the dishes recipies are saved locally. 
