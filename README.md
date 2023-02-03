@@ -1,4 +1,5 @@
 
+
 # The Yummies - FLutter APP
 
 Welcome to The Yummies App!
@@ -22,3 +23,14 @@ On clicking the plus button a new screen is opened which has a form to fill the 
 For now, I am using Image.network to show the image.
 
 The Hive Integration with the App is done and all the dishes recipies are saved locally. 
+
+The providers Package is used to store and manage all the Data Objects.  It provides a state management technique that is used for managing a piece of data around the app.
+
+
+     
+
+
+## About the API's used 
+1) Link :  https://pub.dev/packages/simple_gradient_text
+
+Uses : Create fast  gradient texts, whether linear or radial, you can  decide the colors (No restriction in Number) and the text to display.
