@@ -43,11 +43,10 @@ All the ScreenShots can be found in the 'ScreenShots-APP' folder to access all t
 
 FireBase is used for User Authorization. The user is needed to enter the emailId and Password to enter the main screeen of the App. The users can create a new account if they dont have an account. 
  Features like Automatic LogIn and LogOut has been implemented using sharedPreferences to store token-Id.     
-
+ The user can also manually LogOut from the App by choosing the logout option from drawer Widget.
 
 ## About the Libraries used : 
 1) Simple Gradient Text :  https://pub.dev/packages/simple_gradient_text
-
 Uses : Create fast  gradient texts, whether linear or radial, you can  decide the colors (No restriction in Number) and the text to display.
 
 2) Http API : https://pub.dev/packages/http
