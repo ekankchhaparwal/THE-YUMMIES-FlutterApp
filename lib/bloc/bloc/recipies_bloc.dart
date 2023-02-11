@@ -7,7 +7,7 @@ part 'recipies_event.dart';
 part 'recipies_state.dart';
 
 class RecipiesBloc extends Bloc<RecipiesEvent, RecipiesState> {
-  final AllDishesRecipie _allDishesRecipie = AllDishesRecipie();
+  final AllDishesRecipie _allDishesRecipie = AllDishesRecipie([]);
   RecipiesBloc() : super(InitializedRecipiesState()) {
     on<InitializingRecipiesEvent>((event, emit) async {
       emit(InitializingRecipiesState());

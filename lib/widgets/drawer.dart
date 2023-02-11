@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:the_yummies/screens/editmealscreen.dart';
 import '../screens/new_meal_screen.dart';
-
+import '../providers/authorization.dart';
+import 'package:provider/provider.dart';
 class FiltersAndEDit extends StatelessWidget {
   const FiltersAndEDit({super.key});
 
@@ -99,6 +100,32 @@ class FiltersAndEDit extends StatelessWidget {
             },
           ),
           const Divider(),
+          ListTile(
+            leading: const Icon(Icons.exit_to_app,color: Colors.purple,),
+            title: const Text(
+              'Log-Out',
+              style: TextStyle(
+                  fontSize: 15,
+                  decoration: TextDecoration.none,
+                  color: Colors.pinkAccent,
+                  fontWeight: FontWeight.bold),
+            ),
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).pushReplacementNamed('/');
+              Provider.of<Authorization>(context, listen: false).logOut();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: const Text('Logged Out Successfully!!'),
+                  elevation: 5,
+                  dismissDirection: DismissDirection.down,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              );
+            },
+          ),
         ],
       ),
     );

@@ -106,6 +106,7 @@ class AllDishesRecipie with ChangeNotifier {
       preparationCost: 250,
     ),
   ];
+  AllDishesRecipie(this._dishesRecipies);
   List<DishItem> _dishesRecipies = [];
   static const String _boxname = 'dishes';
 
