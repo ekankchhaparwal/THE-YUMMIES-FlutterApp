@@ -36,9 +36,9 @@ class MyApp extends StatelessWidget {
             create: (context) => Authorization(),
           ),
           ChangeNotifierProxyProvider<Authorization, AllDishesRecipie>(
-            create: (context) => AllDishesRecipie([]),
+            create: (context) => AllDishesRecipie([],""),
             update: (context, auth, previous) =>
-                AllDishesRecipie(previous == null ? [] : previous.allDishes),
+                AllDishesRecipie(previous == null ? [] : previous.allDishes,auth.Token.toString()),
           ),
         ],
         child: Consumer<Authorization>(

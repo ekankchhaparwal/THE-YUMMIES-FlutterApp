@@ -33,6 +33,8 @@ class _AllRecipiesState extends State<AllRecipies> {
                   _showFavourites = false;
                 } else if (selectedValue == FavouriteFilter.NonVegetarian) {
                   _isVeg = false;
+                   _showAll = false;
+                  _showFavourites = false;
                 } else if (selectedValue == FavouriteFilter.ShowAllRecipies) {
                   _showAll = true;
                   _showFavourites = false;
@@ -75,8 +77,8 @@ class _AllRecipiesState extends State<AllRecipies> {
         ],
       ),
       // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     Provider.of<AllDishesRecipie>(context,listen: false).addOnce();
+      //   onPressed: () async{
+      //     await Provider.of<AllDishesRecipie>(context,listen: false).addOnce();
       //   },
       //   elevation: 6,
       //   child: Icon(Icons.add),

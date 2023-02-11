@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../providers/dishItem.dart';
 import 'package:hive/hive.dart';
 import '../providers/idgenerator.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class AllDishesRecipie with ChangeNotifier {
   final List<DishItem> _dishesRecipiesToStore = [
@@ -106,7 +108,8 @@ class AllDishesRecipie with ChangeNotifier {
       preparationCost: 250,
     ),
   ];
-  AllDishesRecipie(this._dishesRecipies);
+  final String _token;
+  AllDishesRecipie(this._dishesRecipies, this._token);
   List<DishItem> _dishesRecipies = [];
   static const String _boxname = 'dishes';
 
@@ -144,7 +147,7 @@ class AllDishesRecipie with ChangeNotifier {
     notifyListeners();
   }
 
-  void addOnce() async {
+  Future<void> addOnce() async {
     await addDish(_dishesRecipiesToStore[0]);
     await addDish(_dishesRecipiesToStore[1]);
     await addDish(_dishesRecipiesToStore[2]);
@@ -166,10 +169,41 @@ class AllDishesRecipie with ChangeNotifier {
       isFavourite: false,
     );
     var box = await Hive.openBox<DishItem>(_boxname);
-    // await box.add(newProduct);
     await box.put(id, newProduct);
     _dishesRecipies.add(newProduct);
     notifyListeners();
+  }
+
+  Future<void> addDishItemOnline(DishItem dishItem) async {
+    var url = Uri.https('mealsrecipieapp-default-rtdb.firebaseio.com',
+        '/dishes.json', {'auth': _token});
+         
+    try {
+      final response = await http.post(url,
+          body: json.encode({
+            'title': dishItem.title,
+            'vegetarian':dishItem.vegetarian,
+            'recipieDescription': dishItem..recipieDescription,
+            'preparationCost': dishItem.preparationCost,
+            'imageUrl':dishItem..imageUrl,
+            'isFavourite':dishItem.isFavourite,
+            'preparationTime':dishItem.preparationTime
+          }));
+          final newProduct = DishItem(
+      id: json.decode(response.body)['name'],
+      title: dishItem.title,
+      vegetarian: dishItem.vegetarian,
+      imageUrl: dishItem.imageUrl,
+      preparationCost: dishItem.preparationCost,
+      preparationTime: dishItem.preparationTime,
+      recipieDescription: dishItem.recipieDescription,
+      isFavourite: false,
+    );
+      _dishesRecipies.add(newProduct);
+      notifyListeners();
+    } catch (error) {
+      rethrow;
+    }
   }
 
   Future<void> toggleFavouritesAndSave(DishItem dishItem) async {
