@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_yummies/providers/dishItem.dart';
 import 'package:the_yummies/screens/RecippieDetailScreen.dart';
+import 'package:the_yummies/screens/edit_yourmeal_screen.dart';
 import './screens/all_recipies.dart';
 import 'package:provider/provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
           RecipieDetailScreen.routeName: (ctx) => RecipieDetailScreen(),
           EditMeals.routeName: (ctx) => EditMeals(),
           NewMealScreen.routeName: (ctx) => NewMealScreen(),
+          EditYourMealRecipieScreen.routeName : (ctx) => EditYourMealRecipieScreen(),
         },
       ),
     );

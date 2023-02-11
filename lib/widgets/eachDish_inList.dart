@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/allDishes.dart';
+import '../screens/edit_yourmeal_screen.dart';
 
 class DishIndividualItem extends StatelessWidget {
   final String title;
@@ -20,7 +21,10 @@ class DishIndividualItem extends StatelessWidget {
         spacing: 12,
         children: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context)
+                  .pushNamed(EditYourMealRecipieScreen.routeName,arguments: Id);
+            },
             icon: const Icon(
               Icons.edit,
               color: Color.fromARGB(255, 38, 227, 44),

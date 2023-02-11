@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:the_yummies/providers/allDishes.dart';
 import 'package:the_yummies/widgets/drawer.dart';
 import '../widgets/recipiesgrid.dart';
 
@@ -48,6 +50,15 @@ class _AllRecipiesState extends State<AllRecipies> {
           ),
         ],
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Provider.of<AllDishesRecipie>(context,listen: false).addOnce();
+      //   },
+      //   elevation: 6,
+      //   child: Icon(Icons.add),
+      //   backgroundColor: Colors.purpleAccent,
+      //   splashColor: Colors.deepOrange,
+      // ),
       drawer: const FiltersAndEDit(),
       body: RecipiesGrid(_showFavourites),
     );

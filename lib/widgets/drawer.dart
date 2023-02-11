@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:the_yummies/screens/editmealscreen.dart';
+import '../screens/new_meal_screen.dart';
 
 class FiltersAndEDit extends StatelessWidget {
   const FiltersAndEDit({super.key});
@@ -76,7 +77,25 @@ class FiltersAndEDit extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(EditMeals.routeName);
+              Navigator.of(context).pushNamed(EditMeals.routeName);
+            },
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(
+              Icons.fastfood_outlined,
+              color: Colors.purple,
+            ),
+            title: const Text(
+              'Add New Meal',
+              style: TextStyle(
+                  fontSize: 15,
+                  decoration: TextDecoration.none,
+                  color: Colors.pinkAccent,
+                  fontWeight: FontWeight.bold),
+            ),
+            onTap: () {
+              Navigator.of(context).pushNamed(NewMealScreen.routeName);
             },
           ),
           const Divider(),

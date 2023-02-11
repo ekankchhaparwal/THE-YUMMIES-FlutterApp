@@ -3,26 +3,27 @@ import 'package:provider/provider.dart';
 import '../providers/allDishes.dart';
 import '../providers/dishItem.dart';
 import '../screens/editmealscreen.dart';
-class NewMealScreen extends StatefulWidget {
-  const NewMealScreen({super.key});
-  static const routeName = "/newDish";
+
+class EditYourMealRecipieScreen extends StatefulWidget {
+  static const routeName = "/editDish";
+
   @override
-  State<NewMealScreen> createState() => _NewMealScreenState();
+  State<EditYourMealRecipieScreen> createState() =>
+      _EditYourMealRecipieScreenState();
 }
 
-class _NewMealScreenState extends State<NewMealScreen> {
+class _EditYourMealRecipieScreenState extends State<EditYourMealRecipieScreen> {
   final _focusTimeNode = FocusNode();
   final _imageController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
   final _focusImageNode = FocusNode();
   String _dishName = "";
   String _category = "Vegetarian";
-  String? _difficulty = "Simple";
   String _imageURL = "";
   String _recipie = "";
-  int _Time = 0;
+  int _time = 0;
   int _costs = 0;
-
+  String _id = "";
   @override
   void dispose() {
     _focusImageNode.dispose();
@@ -33,23 +34,24 @@ class _NewMealScreenState extends State<NewMealScreen> {
 
   void _saveForm() {
     final boole = _formkey.currentState!.validate();
-    
+
     if (!boole) {
       return;
     }
     _formkey.currentState!.save();
 
     List<String> description = _recipie.split(RegExp(r'[.!?]'));
-    var _newDish = DishItem(
-        id: "",
+    var editedDish = DishItem(
+        id: _id,
         title: _dishName,
         imageUrl: _imageURL,
         recipieDescription: description,
         vegetarian: _category == "Vegetarian",
-        preparationTime: 0,
-        preparationCost: 0);
-    Provider.of<AllDishesRecipie>(context, listen: false).addDish(_newDish);
-    
+        preparationTime: _time,
+        preparationCost: _costs);
+    Provider.of<AllDishesRecipie>(context, listen: false)
+        .editDish(editedDish);
+
     Navigator.of(context).pushReplacementNamed(EditMeals.routeName);
   }
 
@@ -59,11 +61,22 @@ class _NewMealScreenState extends State<NewMealScreen> {
     );
   }
 
+  void setMealCategories(DishItem dishItem) {
+    _category = dishItem.vegetarian ? "Vegetarian" : "Non-Vegetarian";
+    _recipie = dishItem.recipieDescription.join('. ');
+    _imageController.text = dishItem.imageUrl;
+    _id = dishItem.id;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final mealId = ModalRoute.of(context)!.settings.arguments as String;
+
+    final mealData = Provider.of<AllDishesRecipie>(context).findById(mealId);
+    setMealCategories(mealData);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add New Meal"),
+        title: const Text("Edit Your Meal Recipie"),
         actions: [
           IconButton(
             onPressed: () {
@@ -79,7 +92,7 @@ class _NewMealScreenState extends State<NewMealScreen> {
             key: _formkey,
             child: ListView(children: <Widget>[
               TextFormField(
-                initialValue: "",
+                initialValue: mealData.title,
                 decoration: const InputDecoration(labelText: 'Dish Name'),
                 keyboardType: TextInputType.name,
                 textInputAction: TextInputAction.next,
@@ -97,7 +110,7 @@ class _NewMealScreenState extends State<NewMealScreen> {
                 }),
               ),
               TextFormField(
-                initialValue: _Time.toString(),
+                initialValue: mealData.preparationTime.toString(),
                 decoration: const InputDecoration(labelText: 'Time to Cook'),
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
@@ -115,7 +128,7 @@ class _NewMealScreenState extends State<NewMealScreen> {
                 },
                 focusNode: _focusTimeNode,
                 onSaved: ((value) {
-                  _Time = int.parse(value.toString());
+                  _time = int.parse(value.toString());
                   ;
                 }),
               ),
@@ -151,49 +164,9 @@ class _NewMealScreenState extends State<NewMealScreen> {
               const Divider(
                 color: Colors.black87,
               ),
-              spacer(10),
-              const Text(
-                "Difficulty :",
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue),
-              ),
               spacer(5),
-              RadioListTile(
-                title: const Text("Simple"),
-                value: "Simple",
-                groupValue: _difficulty,
-                onChanged: (value) {
-                  setState(() {
-                    _difficulty = value.toString();
-                  });
-                },
-              ),
-              RadioListTile(
-                title: const Text("Medium"),
-                value: "Medium",
-                groupValue: _difficulty,
-                onChanged: (value) {
-                  setState(() {
-                    _difficulty = value.toString();
-                  });
-                },
-              ),
-              RadioListTile(
-                title: const Text("Professional"),
-                value: "Professional",
-                groupValue: _difficulty,
-                onChanged: (value) {
-                  setState(() {
-                    _difficulty = value.toString();
-                  });
-                },
-              ),
-              const Divider(
-                color: Colors.black87,
-              ),
               TextFormField(
+                initialValue: _recipie,
                 decoration: const InputDecoration(labelText: 'Recipie :'),
                 maxLines: 4,
                 keyboardType: TextInputType.multiline,
@@ -211,7 +184,7 @@ class _NewMealScreenState extends State<NewMealScreen> {
               ),
               spacer(10),
               TextFormField(
-                initialValue: _costs.toString(),
+                initialValue: mealData.preparationCost.toString(),
                 decoration:
                     const InputDecoration(labelText: 'Preparation Cost :'),
                 keyboardType: TextInputType.number,
@@ -268,7 +241,6 @@ class _NewMealScreenState extends State<NewMealScreen> {
                     child: TextFormField(
                       decoration: const InputDecoration(labelText: 'Image URL'),
                       keyboardType: TextInputType.name,
-
                       focusNode: _focusImageNode,
                       controller: _imageController,
                       validator: (value) {
@@ -277,9 +249,6 @@ class _NewMealScreenState extends State<NewMealScreen> {
                         }
                         return null;
                       },
-                      // onFieldSubmitted: (_) {
-                      //   _saveForm();
-                      // },
                       onSaved: ((newValue) {
                         _imageURL = newValue.toString();
                       }),

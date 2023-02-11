@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_yummies/providers/allDishes.dart';
 import '../providers/dishItem.dart';
 import 'package:provider/provider.dart';
 import '../screens/RecippieDetailScreen.dart';
@@ -22,11 +23,30 @@ class DishItemBuild extends StatelessWidget {
               ),
               onPressed: () {
                 dishItem.toggleFavourite();
+                Provider.of<AllDishesRecipie>(context, listen: false)
+                    .toggleFavouritesAndSave(dishItem)
+                    .then((value) {
+                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: dishItem.isFavourite
+                          ? Text('  Added to Favourites')
+                          : Text('  Removed from Favourites'),
+                      elevation: 5,
+                      duration: Duration(milliseconds: 1500),
+                      behavior: SnackBarBehavior.floating,
+                      dismissDirection: DismissDirection.down,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                  );
+                });
               },
             ),
           ),
           backgroundColor: Color.fromARGB(221, 31, 30, 30),
-          title:  Text(
+          title: Text(
             dishItem.title,
             softWrap: true,
           ),
@@ -39,8 +59,9 @@ class DishItemBuild extends StatelessWidget {
               arguments: dishItem.id,
             );
           },
-          child: Image.network(
-            dishItem.imageUrl,
+          child: FadeInImage(
+            image: NetworkImage(dishItem.imageUrl),
+            placeholder: const AssetImage('images/dishImage.jpg'),
             fit: BoxFit.cover,
           ),
         ),

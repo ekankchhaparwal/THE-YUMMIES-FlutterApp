@@ -15,17 +15,6 @@ class EditMeals extends StatelessWidget {
         body: Scaffold(
       appBar: AppBar(
         title: const Text('Your Meals'),
-        actions: <Widget>[
-          IconButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .pushReplacementNamed(NewMealScreen.routeName);
-              },
-              icon: const Icon(Icons.add)),
-          const SizedBox(
-            width: 10,
-          ),
-        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
