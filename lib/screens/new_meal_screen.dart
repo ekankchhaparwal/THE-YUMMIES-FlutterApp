@@ -46,8 +46,8 @@ class _NewMealScreenState extends State<NewMealScreen> {
         imageUrl: _imageURL,
         recipieDescription: description,
         vegetarian: _category == "Vegetarian",
-        preparationTime: 0,
-        preparationCost: 0);
+        preparationTime: _Time,
+        preparationCost: _costs);
     Provider.of<AllDishesRecipie>(context, listen: false).addDish(_newDish);
     
     Navigator.of(context).pushReplacementNamed(EditMeals.routeName);

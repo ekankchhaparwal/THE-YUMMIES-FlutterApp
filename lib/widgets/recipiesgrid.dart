@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/allDishes.dart';
 import './DishItem.dart';
@@ -14,18 +15,26 @@ class RecipiesGrid extends StatelessWidget {
     final MealsData = Provider.of<AllDishesRecipie>(context);
 
     final MealsList = isFav ? MealsData.favourites : MealsData.allDishes;
-    return GridView.builder(
-      padding: const EdgeInsets.all(10),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 3 / 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10),
-      itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
-        value: MealsList[i],
-        child: DishItemBuild(),
-      ),
-      itemCount: MealsList.length,
-    );
+    return MealsList.isEmpty
+        ? isFav
+            ? const Center(
+                child: Text('You dont Have Any Favourite Dishes  in this section '),
+              )
+            : const Center(
+                child: CircularProgressIndicator(),
+              )
+        : GridView.builder(
+            padding: const EdgeInsets.all(10),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 3 / 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10),
+            itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
+              value: MealsList[i],
+              child: DishItemBuild(),
+            ),
+            itemCount: MealsList.length,
+          );
   }
 }

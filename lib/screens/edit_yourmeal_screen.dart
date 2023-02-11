@@ -63,7 +63,7 @@ class _EditYourMealRecipieScreenState extends State<EditYourMealRecipieScreen> {
 
   void setMealCategories(DishItem dishItem) {
     _category = dishItem.vegetarian ? "Vegetarian" : "Non-Vegetarian";
-    _recipie = dishItem.recipieDescription.join('. ');
+    _recipie = dishItem.recipieDescription.join();
     _imageController.text = dishItem.imageUrl;
     _id = dishItem.id;
   }
