@@ -4,7 +4,7 @@ import 'package:the_yummies/providers/allDishes.dart';
 import 'package:the_yummies/widgets/drawer.dart';
 import '../widgets/recipiesgrid.dart';
 
-enum FavouriteFilter { Favourites, ShowAllRecipies }
+enum FavouriteFilter { Favourites, ShowAllRecipies, Vegetarian, NonVegetarian }
 
 class AllRecipies extends StatefulWidget {
   @override
@@ -13,6 +13,8 @@ class AllRecipies extends StatefulWidget {
 
 class _AllRecipiesState extends State<AllRecipies> {
   var _showFavourites = false;
+  var _isVeg = false;
+  var _showAll = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +26,15 @@ class _AllRecipiesState extends State<AllRecipies> {
               setState(() {
                 if (selectedValue == FavouriteFilter.Favourites) {
                   _showFavourites = true;
-                } else {
+                  _showAll = false;
+                } else if (selectedValue == FavouriteFilter.Vegetarian) {
+                  _isVeg = true;
+                  _showAll = false;
+                  _showFavourites = false;
+                } else if (selectedValue == FavouriteFilter.NonVegetarian) {
+                  _isVeg = false;
+                } else if (selectedValue == FavouriteFilter.ShowAllRecipies) {
+                  _showAll = true;
                   _showFavourites = false;
                 }
               });
@@ -46,6 +56,20 @@ class _AllRecipiesState extends State<AllRecipies> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
+              const PopupMenuItem(
+                value: FavouriteFilter.Vegetarian,
+                child: Text(
+                  "Vegetarian",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              const PopupMenuItem(
+                value: FavouriteFilter.NonVegetarian,
+                child: Text(
+                  "Non-Vegetarian",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
             ],
           ),
         ],
@@ -60,7 +84,7 @@ class _AllRecipiesState extends State<AllRecipies> {
       //   splashColor: Colors.deepOrange,
       // ),
       drawer: const FiltersAndEDit(),
-      body: RecipiesGrid(_showFavourites),
+      body: RecipiesGrid(_showFavourites, _showAll, _isVeg),
     );
   }
 }

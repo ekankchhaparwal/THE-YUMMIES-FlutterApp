@@ -124,6 +124,14 @@ class AllDishesRecipie with ChangeNotifier {
     return _dishesRecipies.where((element) => element.isFavourite).toList();
   }
 
+  List<DishItem> get vegetarianDishes {
+    return _dishesRecipies.where((element) => element.vegetarian).toList();
+  }
+
+  List<DishItem> get NonvegetarianDishes {
+    return _dishesRecipies.where((element) => !element.vegetarian).toList();
+  }
+
   DishItem findById(String id) {
     return _dishesRecipies.firstWhere((element) => element.id == id);
   }
