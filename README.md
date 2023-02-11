@@ -21,25 +21,25 @@ On clicking the Drawer icon ,you can select the editMealsScreen to know all your
 # Filters 
 On clicking the popUp menu the user will be shown four Option to choose : AllMeals , Favourites , Veg Meal , Non-Veg meal to filter the meal Recipies.
 
-# Adding a new Meal Recipie :
+## Adding a new Meal Recipie :
 On clicking the plus button a new screen is opened which has a form to fill the details about the meal like recipie , cost , time , vegetarian or not etc..
 For now, I am using Image.network to show the image.
 You can add a new Meal by choosing the option for New Meal in the Drawer Widget.
 
-# Deleting a meal Recipie :
+## Deleting a meal Recipie :
 The delete icon,on clicking deletes the Meal Completely from the local Storage 
 
-# Editing the meal details :
+## Editing the meal details :
 The edit icon,on clicking lets you edit details of the Meal Completely and update  the same in the local Storage. 
 
-# About Hive Integration :
+## About Hive Integration :
 The Hive Integration with the App is done and all the dishes recipies can be saved locally. The dishes can be read, updated, delete from local storage through hive using the concept of type-adaptor helps to Store Data Objects. 
 
-# ScreenShots of the App
+## ScreenShots of the App
 
 All the ScreenShots can be found in the 'ScreenShots-APP' folder to access all the ScreenShots of the App.
 
-#User Authorization 
+##User Authorization 
 
 FireBase is used for User Authorization. The user is needed to enter the emailId and Password to enter the main screeen of the App. The users can create a new account if they dont have an account. 
  Features like Automatic LogIn and LogOut has been implemented using sharedPreferences to store token-Id.     
