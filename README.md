@@ -10,16 +10,19 @@ for easy access later.
 
 The providers Package is used to store and manage all the Data Objects.  It provides a state management technique that is used for managing a piece of data around the app.
 
-On clicking the image of any meal you are navigated to a new screen which displays the recipe of the Meal with its title, image, Recipie Properties like vegetarian/ Non vegetarian , preparation Time, preparation cost.
+On clicking the image of any meal you are navigated to a new screen which displays 
+the recipe of the Meal with its title, image, Recipie Properties like 
+vegetarian/ Non vegetarian , preparation Time, preparation cost.
 
 If you come across a recipe that you particularly enjoy, you can add it 
 to your favorites section by clicking  the "Heart" button on footer part of the 
-image of the particular meal.The Favorite Dishes can then be accessed 
+image of the particular meal.The user will be acknownledged about this through a SnackBar. The Favorite Dishes can then be accessed 
 by selecting the "Favorites" option from the PopUpMenuOption.
 
 On clicking the Drawer icon ,you can select the editMealsScreen to know all your meals in a screen using ListTile.
 # Filters 
-On clicking the popUp menu the user will be shown four Option to choose : AllMeals , Favourites , Veg Meal , Non-Veg meal to filter the meal Recipies.
+On clicking the popUp menu the user will be shown four Option to choose : AllMeals ,
+Favourites , Veg Meal , Non-Veg meal to filter the meal Recipies.
 
 ## Adding a new Meal Recipie :
 On clicking the plus button a new screen is opened which has a form to fill the details about the meal like recipie , cost , time , vegetarian or not etc..
