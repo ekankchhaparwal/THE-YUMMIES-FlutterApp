@@ -39,6 +39,7 @@ class Authorization with ChangeNotifier {
             "returnSecureToken": true,
           }));
       final responseData = json.decode(response.body);
+      print(responseData);
       if (responseData['error'] != null) {
         throw HttpException(responseData['error']['message']);
       }
@@ -71,6 +72,7 @@ class Authorization with ChangeNotifier {
             "returnSecureToken": true,
           }));
       final responseData = json.decode(response.body);
+      print(responseData);
       if (responseData['error'] != null) {
         throw HttpException(responseData['error']['message']);
       }

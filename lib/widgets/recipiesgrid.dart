@@ -13,7 +13,7 @@ class RecipiesGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Provider.of<AllDishesRecipie>(context, listen: false)
-        .getDishesFromStorage();
+        .getAllDishes();
     final MealsData = Provider.of<AllDishesRecipie>(context);
 
     List<DishItem> MealsList = [];

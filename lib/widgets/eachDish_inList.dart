@@ -68,8 +68,8 @@ class DishIndividualItem extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        Provider.of<AllDishesRecipie>(context, listen: false)
-                            .deleteDish(Id);
+                         Provider.of<AllDishesRecipie>(context, listen: false)
+                            .deleteRecipie(Id);
                         _didDelete = true;
                         Navigator.of(ctx).pop();
                       },

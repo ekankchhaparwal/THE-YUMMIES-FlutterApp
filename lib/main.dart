@@ -5,22 +5,13 @@ import 'package:the_yummies/screens/auth_screen.dart';
 import 'package:the_yummies/screens/edit_yourmeal_screen.dart';
 import './screens/all_recipies.dart';
 import 'package:provider/provider.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import './providers/allDishes.dart';
-import 'package:hive/hive.dart';
 import './screens/editmealscreen.dart';
 import './screens/new_meal_screen.dart';
-import 'package:path_provider/path_provider.dart';
 import './providers/authorization.dart';
 import './screens/SplashScreen.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final doucment = await getApplicationDocumentsDirectory();
-  Hive.init(doucment.path);
-  // await Hive.initFlutter();
-  Hive.registerAdapter(DishItemAdapter());
-  await Hive.openBox<DishItem>('dishes');
+void main()  {
   runApp(const MyApp());
 }
 
@@ -36,9 +27,10 @@ class MyApp extends StatelessWidget {
             create: (context) => Authorization(),
           ),
           ChangeNotifierProxyProvider<Authorization, AllDishesRecipie>(
-            create: (context) => AllDishesRecipie([],""),
-            update: (context, auth, previous) =>
-                AllDishesRecipie(previous == null ? [] : previous.allDishes,auth.Token.toString()),
+            create: (context) => AllDishesRecipie([], ""),
+            update: (context, auth, previous) => AllDishesRecipie(
+                previous == null ? [] : previous.allDishes,
+                auth.Token.toString()),
           ),
         ],
         child: Consumer<Authorization>(

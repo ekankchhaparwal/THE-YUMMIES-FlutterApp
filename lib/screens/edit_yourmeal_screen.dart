@@ -41,6 +41,9 @@ class _EditYourMealRecipieScreenState extends State<EditYourMealRecipieScreen> {
     _formkey.currentState!.save();
 
     List<String> description = _recipie.split(RegExp(r'[.!?]'));
+    for (int i = 0; i < description.length-1; i++) {
+      description[i] = description[i] + '.';
+    }
     var editedDish = DishItem(
         id: _id,
         title: _dishName,
@@ -49,8 +52,7 @@ class _EditYourMealRecipieScreenState extends State<EditYourMealRecipieScreen> {
         vegetarian: _category == "Vegetarian",
         preparationTime: _time,
         preparationCost: _costs);
-    Provider.of<AllDishesRecipie>(context, listen: false)
-        .editDish(editedDish);
+    Provider.of<AllDishesRecipie>(context, listen: false).updateRecipie(editedDish.id,editedDish);
 
     Navigator.of(context).pushReplacementNamed(EditMeals.routeName);
   }

@@ -23,25 +23,22 @@ class DishItemBuild extends StatelessWidget {
               ),
               onPressed: () {
                 dishItem.toggleFavourite();
-                Provider.of<AllDishesRecipie>(context, listen: false)
-                    .toggleFavouritesAndSave(dishItem)
-                    .then((value) {
-                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: dishItem.isFavourite
-                          ? Text('  Added to Favourites')
-                          : Text('  Removed from Favourites'),
-                      elevation: 5,
-                      duration: Duration(milliseconds: 1500),
-                      behavior: SnackBarBehavior.floating,
-                      dismissDirection: DismissDirection.down,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
+                
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: dishItem.isFavourite
+                        ? Text(' Added to Favourites')
+                        : Text(' Removed from Favourites'),
+                    elevation: 5,
+                    duration: Duration(milliseconds: 1500),
+                    behavior: SnackBarBehavior.floating,
+                    dismissDirection: DismissDirection.down,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
-                  );
-                });
+                  ),
+                );
               },
             ),
           ),
