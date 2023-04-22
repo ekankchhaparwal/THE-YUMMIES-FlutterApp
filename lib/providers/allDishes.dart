@@ -206,7 +206,7 @@ class AllDishesRecipie with ChangeNotifier {
       notifyListeners();
     });
   }
-
+  
   Future<void> updateRecipie(String id, DishItem dishItem) async {
     final indexId = _dishesRecipies.indexWhere((element) => element.id == id);
     var url = Uri.https('mealsrecipieapp-default-rtdb.firebaseio.com',

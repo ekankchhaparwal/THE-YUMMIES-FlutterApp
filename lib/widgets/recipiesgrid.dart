@@ -12,10 +12,7 @@ class RecipiesGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<AllDishesRecipie>(context, listen: false)
-        .getAllDishes();
     final MealsData = Provider.of<AllDishesRecipie>(context);
-
     List<DishItem> MealsList = [];
     if (isFav) {
       MealsList = MealsData.favourites;

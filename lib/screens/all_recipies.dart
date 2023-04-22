@@ -12,9 +12,25 @@ class AllRecipies extends StatefulWidget {
 }
 
 class _AllRecipiesState extends State<AllRecipies> {
+  var _isLoading = false;
   var _showFavourites = false;
   var _isVeg = false;
   var _showAll = true;
+  @override
+  void initState() {
+    setState(() {
+      _isLoading = true;
+    });
+    Provider.of<AllDishesRecipie>(context, listen: false)
+        .getAllDishes()
+        .then((value) {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +49,7 @@ class _AllRecipiesState extends State<AllRecipies> {
                   _showFavourites = false;
                 } else if (selectedValue == FavouriteFilter.NonVegetarian) {
                   _isVeg = false;
-                   _showAll = false;
+                  _showAll = false;
                   _showFavourites = false;
                 } else if (selectedValue == FavouriteFilter.ShowAllRecipies) {
                   _showAll = true;
@@ -86,7 +102,9 @@ class _AllRecipiesState extends State<AllRecipies> {
       //   splashColor: Colors.deepOrange,
       // ),
       drawer: const FiltersAndEDit(),
-      body: RecipiesGrid(_showFavourites, _showAll, _isVeg),
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : RecipiesGrid(_showFavourites, _showAll, _isVeg),
     );
   }
 }
