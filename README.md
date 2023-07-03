@@ -35,9 +35,6 @@ The delete icon,on clicking deletes the Meal Completely from the local Storage
 ## Editing the meal details :
 The edit icon,on clicking lets you edit details of the Meal Completely and update  the same in the local Storage. 
 
-## About Hive Integration :
-The Hive Integration with the App is done and all the dishes recipies can be saved locally. The dishes can be read, updated, delete from local storage through hive using the concept of type-adaptor helps to Store Data Objects. 
-
 ## ScreenShots of the App
 
 All the ScreenShots can be found in the 'ScreenShots-APP' folder to access all the ScreenShots of the App.
